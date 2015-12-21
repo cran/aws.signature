@@ -1,0 +1,14 @@
+7e54d13b049852d054cfc133c4560367 *DESCRIPTION
+8b49fa80792b46361954a93fbb959038 *NAMESPACE
+2b73997cf159d400521a5723da222ece *NEWS
+0eb73445c19659da93f5c62feada5e78 *R/URLencode.R
+cfbc6bbe586f9d0721670dc5cbb40471 *R/v4.R
+1c49652cdd7ed8c32f823883147d06ce *README.md
+7318d36c2cf5438dd8840f33bca6f26e *inst/CITATION
+21c7d0311370cc9ee8dffb4bffeb75d5 *man/authorization.Rd
+71a658b8da6e1f4f2d555382d77e614d *man/aws.signature-package.Rd
+9b68bdbeb25e961f913b7249e82e9106 *man/canonical_request.Rd
+e43636efb740a0f6dcbd41e9f2760aaa *man/string_to_sign.Rd
+81f639b36bb56989d50ad641af37f56c *man/v4.Rd
+c1032b26ea4f71b5dd5b3a40b45ea9d0 *tests/testthat.R
+c59581e2f412fe8436bf1bdde8f598ae *tests/testthat/tests.R
