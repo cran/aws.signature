@@ -10,7 +10,7 @@ function(datetime = format(Sys.time(),"%Y%M%dT%H%M%S", tz = "UTC"),
         stop("Missing AWS Secret Access Key")
     }
     
-        # set sort locale
+    # set sort locale
     lc <- Sys.getlocale(category = "LC_COLLATE")
     Sys.setlocale(category = "LC_COLLATE", locale = "C")
     on.exit(Sys.setlocale(category = "LC_COLLATE", locale = lc))
