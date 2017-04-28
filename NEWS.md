@@ -1,3 +1,16 @@
+# CHANGES TO aws.signature 0.2.9
+
+* Modified `read_credentials()` to allow key-value pairs of any form: `KEY=VALUE`, `KEY = VALUE`, `KEY= VALUE`, `KEY =VALUE`. (#15, h/t David Severski)
+
+# CHANGES TO aws.signature 0.2.8
+
+* Corrected the default timestamp format in `signature_v2_auth()`.
+
+# CHANGES TO aws.signature 0.2.7
+
+* `read_credentials()` now looks for the credentials file in a more reasonable location on Windows (#12/#13, h/t user:kadrach)
+* roxygenized the documentation (and reorganized the source files slightly). (#9)
+
 # CHANGES TO aws.signature 0.2.6
 
 * Added support for signing requests (using V4 signatures) with temporary security tokens.
