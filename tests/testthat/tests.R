@@ -43,7 +43,7 @@ e25f777ba161a0f1baf778a87faf057187cf5987f17953320e3ca399feb5f00d"
                       date = "20110909",
                       region = "us-east-1",
                       service = "host",
-                      string_to_sign = tosign)
+                      string_to_sign = tosign, verbose = TRUE)
     expect_identical(s, ex, label = "String to sign matches")
 })
 
@@ -117,3 +117,20 @@ AWSAccessKeyId=AKIAIOSFODNN7EXAMPLE&Action=DescribeJobFlows&SignatureMethod=Hmac
     expect_true(identical(true_sig, sig2$Signature), label = "v2 Signature correct, setting defaults")
 })
 
+test_that("session_token returned in signature_v4()", {
+    s <- signature_v4_auth(datetime = "20110909T233600Z",
+                           region = "us-east-1",
+                           service = "host",
+                           verb = "GET",
+                           action = "/",
+                           query_args = list(foo = "Zoo", foo = "aha"),
+                           canonical_headers = list(host = "host.foo.com",
+                                                    date = "20110909T233600Z"),
+                           request_body = "",
+                           key = "AKIDEXAMPLE",
+                           secret = "wJalrXUtnFEMI/K7MDENG+bPxRfiCYEXAMPLEKEY",
+                           session_token = "foobar",
+                           query = FALSE,
+                           algorithm = "AWS4-HMAC-SHA256")
+    expect_true(grepl("x-amz-security-token", s$SignedHeaders))
+})
