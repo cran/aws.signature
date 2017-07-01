@@ -1,3 +1,23 @@
+# CHANGES TO aws.signature 0.3.5
+
+* `signature_v4_auth()` and `signature_v2_auth()` now both return a `Region` value in their response list, as identified by `locate_credentials()`.
+
+# CHANGES TO aws.signature 0.3.4
+
+* Fixed a bug related to extracting credentials from environment variables. (https://github.com/cloudyr/aws.s3/issues/142, https://github.com/cloudyr/aws.s3/issues/143)
+* Fixed a bug related to extracting credentials from EC2 instance metadata (https://github.com/cloudyr/aws.s3/issues/144, h/t Daniele Rapati, Will Bowditch)
+* Bumped aws.ec2metadata suggestion to 0.1.2.
+
+# CHANGES TO aws.signature 0.3.3
+
+* Fixed a bug in `locate_credentials()` caused by trying to retrieve EC2 instance metadata from a non-EC2 machine on which the **aws.ec2metadata** package was installed.
+* Expanded test suite to cover more of `locate_credentials()` behavior.
+
+# CHANGES TO aws.signature 0.3.2
+
+* CRAN Release.
+* Added some minor tests.
+
 # CHANGES TO aws.signature 0.3.1
 
 * Changed the precedence of credential sources to: user-supplied values, EC2 instance metadata, environment variables, local credentials file, and global credentials file. (#11)
