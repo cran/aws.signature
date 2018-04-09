@@ -5,7 +5,7 @@
 #' @param query_args A named list of character strings containing the query string values (if any) used in the API request.
 #' @param canonical_headers A named list of character strings containing the headers used in the request.
 #' @param request_body The body of the HTTP request, or a filename. If a filename, hashing is performed on the file without reading it into memory.
-#' @details This function creates a \dQuote{Canonical Request}, which is part of the Signature Version 4.
+#' @details This function creates a \dQuote{Canonical Request}, which is part of the Signature Version 4. Users probably only need to use the \code{\link{signature_v4_auth}} function to generate signatures.
 #' @return A list containing
 #' @author Thomas J. Leeper <thosjleeper@gmail.com>
 #' @references
@@ -56,9 +56,9 @@ function(verb,
     
     names(canonical_headers) <- tolower(names(canonical_headers))
     canonical_headers <- canonical_headers[order(names(canonical_headers))]
-    header_string <- paste0(names(canonical_headers), ":", canonical_headers, "\n", collapse = "")
     # trim leading, trailing, and all non-quoted duplicated spaces
-    # gsub("^\\s+|\\s+$", "", x)
+    trimmed_headers <- gsub("[[:space:]]{2,}", " ", trimws(canonical_headers))
+    header_string <- paste0(names(canonical_headers), ":", trimmed_headers, "\n", collapse = "")
     signed_headers <- paste(names(canonical_headers), sep = "", collapse = ";")
     if(length(query_args)) {
         query_args <- unlist(query_args[order(names(query_args))])
