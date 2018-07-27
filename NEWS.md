@@ -1,3 +1,21 @@
+# aws.signature 0.4.4
+
+* Allow use of ECS metadata where available. (h/t @jon-mago #23, #30)
+
+# aws.signature 0.4.3
+
+* Incorporated standard environment variables `AWS_SHARED_CREDENTIALS_FILE` and `AWS_PROFILE` into code as appropriate and tweaked `locate_credentials()` accordingly.
+* `signature_v4_auth()` and `signature_v2_auth()` now returns all inputs to facilitate using the return value in constructing an HTTP request.
+* Updated documentation.
+
+# aws.signature 0.4.2
+
+* Fixed a bug in the default `datetime` argument in several functions. (#28, h/t @yansonz)
+
+# aws.signature 0.4.1
+
+* Removed some tests from execution on CRAN.
+
 # aws.signature 0.4.0
 
 * `read_credentials()` now trims excess whitespace from profile names. (#22, h/t Paul Ingles)
