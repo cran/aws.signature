@@ -1,3 +1,12 @@
+# aws.signature 0.5.0
+
+* New Maintainer: @jon-mago
+* Fix use of file system credentials (Thanks to @lgjohnson)
+* Fix use of ECS metadata (Requires aws.ec2metadata >= 0.1.6)
+* Rewrite some internals and tests
+* Removed `locate_credentials()` call from internal `signature_v4()` function. (#33)
+* `signature_v4_auth()` and `signature_v2_auth()` gain a `force_credentials` argument. If `force_credentials = TRUE`, user-supplied values are used and no call to `locate_credentials()` is made. (#33)
+
 # aws.signature 0.4.4
 
 * Allow use of ECS metadata where available. (h/t @jon-mago #23, #30)
