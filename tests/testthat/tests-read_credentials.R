@@ -14,6 +14,8 @@ test_that("read_credentials() works", {
     bob <- read_credentials(file = "credentials")[["Bob"]]
     expect_equal(bob[["AWS_SECRET_ACCESS_KEY"]], "Bob_secret_access_key", label = "final line value read correctly")
     expect_false(identical(alice, bob), label = "Read distinct profiles correctly")
+    expect_false("[" %in% names(alice))
+    expect_false("[" %in% names(bob))
 })
 
 test_that("read_credentials() works even absent EOL character", {
@@ -53,4 +55,23 @@ test_that("use_credentials() sets environment variables correctly", {
     
     # restore environment variables
     do.call("Sys.setenv", as.list(e))
+})
+
+context("parse_credentials()")
+test_that("parse_credentials() handles some pathological cases", {
+    expect_equal(
+        parse_credentials("[has ]spaces]\naws=foo\nthing=bar"),
+        structure(list("has " = list(AWS = "foo", THING = "bar")), class = 'aws_credentials')
+        )
+    
+    expect_equal(
+        parse_credentials("[has spaces]\naws=foo\nthing=bar"),
+        structure(list("has spaces" = list(AWS = "foo", THING = "bar")), class = 'aws_credentials')
+    )
+    
+    expect_equal(
+        parse_credentials("[spaces]\naws=foo\ns3 =\n   thing=bar\n[nspaces]\naws= foo\nthing   =   bar\n\n"),
+        structure(list("spaces" = list(AWS = "foo", S3 = "thing=bar"),
+                       "nspaces" = list(AWS="foo", THING="bar")), class = 'aws_credentials')
+    )
 })

@@ -1,8 +1,8 @@
 Package: aws.signature
 Type: Package
 Title: Amazon Web Services Request Signatures
-Version: 0.5.0
-Date: 2019-05-08
+Version: 0.5.2
+Date: 2019-08-08
 Authors@R: c(person("Thomas J.", "Leeper",
                     role = c("aut"),
                     email = "thosjleeper@gmail.com",
@@ -17,9 +17,9 @@ URL: https://github.com/cloudyr/aws.signature
 BugReports: https://github.com/cloudyr/aws.signature/issues
 RoxygenNote: 6.1.1
 NeedsCompilation: no
-Packaged: 2019-05-08 13:29:55 UTC; jon_m
+Packaged: 2019-08-08 15:43:47 UTC; jon_m
 Author: Thomas J. Leeper [aut] (<https://orcid.org/0000-0003-4097-6326>),
   Jonathan Stott [cre, aut]
 Maintainer: Jonathan Stott <jonathan.stott@magairports.com>
 Repository: CRAN
-Date/Publication: 2019-05-08 15:40:08 UTC
+Date/Publication: 2019-08-08 16:10:02 UTC
