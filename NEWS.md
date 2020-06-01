@@ -1,3 +1,9 @@
+# aws.signature 0.6.0
+
+* Allow connection to empty regions (h/t @namelessjon, @lawremi)
+* Prioritize the `profile` argument over env vars in `locate_credentials()`
+* Add argument for computing signed body as part of the signature (#59)
+
 # aws.signature 0.5.2
 
 * Fix failure to install package with partial credentials file (h/t @stelsemeyer, #39)
@@ -39,7 +45,7 @@
 * `read_credentials()` now trims excess whitespace from profile names. (#22, h/t Paul Ingles)
 * `locate_credentials()` returns `region = default_region` even when no other credentials are found.
 * `canonical_request()` now correctly trims whitespace.
-* The test suite was upbdated substantially, though not all tests run on CRAN.
+* The test suite was updated substantially, though not all tests run on CRAN.
 
 # aws.signature 0.3.7
 

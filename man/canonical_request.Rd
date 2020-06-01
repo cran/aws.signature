@@ -4,8 +4,14 @@
 \alias{canonical_request}
 \title{Construct a Canonical Request}
 \usage{
-canonical_request(verb, canonical_uri = "", query_args = list(),
-  canonical_headers, request_body = "")
+canonical_request(
+  verb,
+  canonical_uri = "",
+  query_args = list(),
+  canonical_headers,
+  request_body = "",
+  signed_body = FALSE
+)
 }
 \arguments{
 \item{verb}{A character string containing the HTTP verb being used in the request.}
@@ -17,6 +23,8 @@ canonical_request(verb, canonical_uri = "", query_args = list(),
 \item{canonical_headers}{A named list of character strings containing the headers used in the request.}
 
 \item{request_body}{The body of the HTTP request, or a filename. If a filename, hashing is performed on the file without reading it into memory.}
+
+\item{signed_body}{Sign the body request and add the correct header (x-amz-content-sha256) to the list of headers}
 }
 \value{
 A list containing

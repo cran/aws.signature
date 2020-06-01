@@ -5,6 +5,7 @@
 #' @param query_args A named list of character strings containing the query string values (if any) used in the API request.
 #' @param canonical_headers A named list of character strings containing the headers used in the request.
 #' @param request_body The body of the HTTP request, or a filename. If a filename, hashing is performed on the file without reading it into memory.
+#' @param signed_body Sign the body request and add the correct header (x-amz-content-sha256) to the list of headers
 #' @details This function creates a \dQuote{Canonical Request}, which is part of the Signature Version 4. Users probably only need to use the \code{\link{signature_v4_auth}} function to generate signatures.
 #' @return A list containing
 #' @author Thomas J. Leeper <thosjleeper@gmail.com>
@@ -41,7 +42,8 @@ function(verb,
          canonical_uri = "",
          query_args = list(),
          canonical_headers,
-         request_body = ""
+         request_body = "",
+         signed_body = FALSE
          ) {
     if (is.character(request_body) && file.exists(request_body)) {
         body_hash <- tolower(digest::digest(request_body, file = TRUE, algo = "sha256", serialize = FALSE))
@@ -53,6 +55,10 @@ function(verb,
     lc <- Sys.getlocale(category = "LC_COLLATE")
     Sys.setlocale(category = "LC_COLLATE", locale = "C")
     on.exit(Sys.setlocale(category = "LC_COLLATE", locale = lc))
+    
+    if (isTRUE(signed_body)) {
+        canonical_headers[['x-amz-content-sha256']] = body_hash
+    }
     
     names(canonical_headers) <- tolower(names(canonical_headers))
     canonical_headers <- canonical_headers[order(names(canonical_headers))]
